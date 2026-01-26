@@ -8,9 +8,8 @@
 
 ### System Components
 
-```
-[Include architecture diagram or ASCII art representation]
-```
+flowchart TB
+  A["[Include architecture diagram here]\n(Replace this Mermaid placeholder with the real architecture diagram)\n\nTip: keep it high-level (components + main data flows)."]
 
 **Components:**
 - **Component A**: [Description and responsibilities]
