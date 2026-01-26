@@ -249,7 +249,7 @@ Task 1 (Setup)
 **When filling this template:**
 - Each task starts with a checkbox `- [ ]` followed by the task number and title in bold
 - Keep tasks completable in 1-3 days
-- Implementation details are listed as bullet points or plain text (no bullet points needed)
+- Implementation details in plain text (one item per line, no bullet points)
 - Include specific file paths and function names when possible
 - Use THE/WHEN/WHERE format for acceptance criteria (matches requirements format)
 - Estimate, Dependencies, and Status go on one line separated by pipes
