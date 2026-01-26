@@ -1,70 +1,101 @@
-# ⚠️ PLACEHOLDER: Please customize these instructions for your project before first use
+# GitHub Copilot Instructions
 
-## Purpose
+## Initial Setup
 
-This file provides instructions to GitHub Copilot to help it better understand your project and provide more contextually appropriate suggestions.
+**IMPORTANT**: When you first interact with this repository, please ask the user the following questions to customize these instructions:
+
+1. **What is the name of this project?**
+2. **What is the primary purpose or goal of this repository?**
+3. **What technology stack is being used?** (e.g., programming languages, frameworks, databases)
+4. **What are the key dependencies or libraries?**
+5. **Are there any specific coding standards or conventions to follow?**
+6. **What are the main architectural principles or patterns used?**
+7. **What testing strategy is in place?**
+8. **What is the code review process?**
+
+After gathering this information, update this file with the specific details about the project to provide better context for future interactions.
+
+---
 
 ## Workflow Overview
 
-This template follows a Kiro-like workflow:
-1. **Requirements** → Define what needs to be built
-2. **Design** → Create technical design documents
-3. **Tasks** → Break down work into actionable items
+This repository follows a structured Kiro-like workflow with documents stored in the `specs/` directory:
+
+1. **Requirements** (`specs/requirements.md`) → Define what needs to be built
+2. **Design** (`specs/design.md`) → Create technical design documents
+3. **Tasks** (`specs/tasks.md`) → Break down work into actionable items
 4. **Implementation** → Execute tasks with quality checks
+
+### Workflow Documents Location
+
+All workflow documents are stored in the `specs/` directory:
+- `specs/requirements.md` - Requirements and specifications
+- `specs/design.md` - Technical design documents
+- `specs/tasks.md` - Task breakdown and implementation plan
 
 ## Project Context
 
-<!-- Describe your project here -->
-- **Project Name**: [Your Project Name]
-- **Technology Stack**: [List your technologies]
-- **Key Dependencies**: [List important dependencies]
+<!-- This section should be filled in after the initial setup questions -->
+- **Project Name**: [To be filled]
+- **Purpose**: [To be filled]
+- **Technology Stack**: [To be filled]
+- **Key Dependencies**: [To be filled]
 
 ## Coding Guidelines
 
-<!-- Add your coding standards and conventions -->
+<!-- This section should be filled in after the initial setup questions -->
 - Follow existing code patterns in the repository
 - Write clear, self-documenting code
 - Include appropriate tests for new functionality
 - Update documentation when making changes
+- [Additional guidelines to be filled]
 
 ## Architecture Principles
 
-<!-- Define your architecture principles -->
+<!-- This section should be filled in after the initial setup questions -->
 - Maintain separation of concerns
 - Follow SOLID principles
 - Keep components modular and reusable
 - Document architectural decisions
+- [Additional principles to be filled]
 
 ## Custom Agents
 
-This repository includes custom agents for specialized tasks:
-- **design-planner**: Helps plan and structure technical designs
-- **architect**: Provides architectural guidance and reviews
-- **reviewer**: Performs thorough code reviews
+This repository includes custom agents for specialized tasks in the Kiro workflow:
+
+- **design-planner**: Creates detailed technical design documents by analyzing requirements in `specs/requirements.md` and writing to `specs/design.md`. Has web access for research.
+- **architect**: Reviews and validates technical designs in `specs/design.md` for architectural soundness. Can update designs and has web access for research.
+- **reviewer**: Performs thorough code reviews focusing on quality, security, and best practices. Read-only access (no modifications).
+
+Use `@design-planner` when you need to create or update technical designs.
+Use `@architect` when you need architectural review and validation.
+Use `@reviewer` when you need code review feedback.
 
 ## Skills
 
 The repository includes skills for common workflows:
-- **spec-authoring**: Writing specifications and requirements
-- **design-authoring**: Creating technical design documents
+- **spec-authoring**: Writing specifications and requirements documents
+- **design-authoring**: Creating technical design documents  
 - **task-breakdown**: Breaking work into manageable tasks
 - **test-runner**: Running and managing tests
 - **code-quality**: Maintaining code quality standards
 
 ## Testing Strategy
 
-<!-- Define your testing approach -->
+<!-- This section should be filled in after the initial setup questions -->
 - Write unit tests for core logic
 - Include integration tests for key workflows
 - Maintain test coverage standards
+- [Additional testing guidelines to be filled]
 
 ## Review Process
 
-<!-- Define your review standards -->
+<!-- This section should be filled in after the initial setup questions -->
 - All changes require review
 - Check for code quality, security, and performance
 - Validate tests are passing
+- [Additional review guidelines to be filled]
 
 ## Additional Notes
 
-<!-- Add any other project-specific instructions -->
+<!-- Add any other project-specific instructions after initial setup -->
