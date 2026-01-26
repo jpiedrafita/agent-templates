@@ -25,6 +25,6 @@ When you first use GitHub Copilot in this repository, it will ask you questions 
 
 ## Custom Agents
 
-- `@design-planner` - Creates detailed technical design documents (has web access for research)
+- `@workflow-orchestrator` - **Main orchestrator** that guides you through the complete workflow (requirements → design → tasks). Iterates on each phase and waits for your approval before proceeding to the next phase.
 - `@architect` - Reviews and validates technical designs (can update designs, has web access)
 - `@reviewer` - Performs thorough code reviews (read-only access)

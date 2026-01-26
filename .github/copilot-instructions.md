@@ -63,12 +63,12 @@ All workflow documents are stored in the `specs/` directory:
 
 This repository includes custom agents for specialized tasks in the Kiro workflow:
 
-- **design-planner**: Creates detailed technical design documents by analyzing requirements in `specs/requirements.md` and writing to `specs/design.md`. Has web access for research.
+- **workflow-orchestrator**: Main agent that guides you through the complete workflow (requirements → design → tasks). Orchestrates the three-phase process, ensuring each phase is complete and approved before moving forward. Uses spec-authoring, design-authoring, and task-breakdown skills.
 - **architect**: Reviews and validates technical designs in `specs/design.md` for architectural soundness. Can update designs and has web access for research.
 - **reviewer**: Performs thorough code reviews focusing on quality, security, and best practices. Read-only access (no modifications).
 
-Use `@design-planner` when you need to create or update technical designs.
-Use `@architect` when you need architectural review and validation.
+Use `@workflow-orchestrator` when starting a new project or feature - it will guide you through requirements, design, and task breakdown.
+Use `@architect` when you need architectural review and validation of existing designs.
 Use `@reviewer` when you need code review feedback.
 
 ## Skills
