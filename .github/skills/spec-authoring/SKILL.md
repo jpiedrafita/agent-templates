@@ -101,8 +101,8 @@ Each requirement follows this format:
 
 ## Tips for Agents
 
-- Reference glossary terms consistently throughout the document
-- Number requirements sequentially (Requirement 1, 2, 3...)
-- Keep user stories concise but complete
+- Reference glossary terms consistently throughout the document (use Term_Case)
+- Number requirements sequentially using headings (### Requirement 1, ### Requirement 2, etc.)
+- Keep user stories concise but complete (one sentence each for As/I want/So that)
 - Ensure every acceptance criterion is independently verifiable
 - Link to this template when user asks about requirements format

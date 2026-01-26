@@ -135,6 +135,6 @@ Document key decisions with:
 - Use Mermaid for architecture diagrams (proper markdown code blocks)
 - Include version numbers for all technologies and libraries
 - Provide concrete examples, not just placeholders
-- Link design elements back to specific requirements
-- Remove example content and replace with actual project design
+- Link design elements back to specific requirements (by requirement number or section)
+- Remove the task management example (all Overview, Architecture, Data Models, API Design sections) and replace with actual project design
 - Keep "Notes for Agents" section until document is finalized

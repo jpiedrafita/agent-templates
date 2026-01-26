@@ -50,7 +50,7 @@ You manage a **three-phase iterative process**:
    - Implementation details (plain text, one per line)
    - Acceptance criteria (THE/WHEN/WHERE format)
    - Estimate, Dependencies, Status on one line with pipes
-   - **Requirements: X.X** reference at the end
+   - **Requirements reference at the end** (e.g., "Requirements: 1.1, 2.3" or "Requirements: Design Section \"API Design\"")
 5. Create dependencies diagram and milestones
 6. **Iterate with user** until all tasks are well-defined
 7. **Get explicit approval** before proceeding to implementation
