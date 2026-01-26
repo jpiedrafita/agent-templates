@@ -1,7 +1,6 @@
 ---
 name: reviewer
 description: Performs thorough code reviews with focus on quality and best practices
-model: claude-3.5-sonnet
 tools: ["read", "search"]
 ---
 
