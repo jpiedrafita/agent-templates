@@ -2,23 +2,20 @@
 
 ## Overview
 
-This document breaks down the implementation into manageable, actionable tasks based on the design in `design.md`. Tasks are organized by phases and include dependencies, estimates, and acceptance criteria.
+This document breaks down the implementation into manageable, actionable tasks based on the design in `design.md`. Each task is represented as a checkbox item for easy progress tracking.
 
 ---
 
-## Task 1: Set up project infrastructure
+- [ ] **1. Set up project infrastructure**
 
-**Description**: Initialize the project repository with proper structure, dependencies, and development environment configuration.
+Initialize the project repository with proper structure, dependencies, and development environment configuration.
 
-**Implementation Details**:
-- Create project directory structure: `src/api/`, `src/services/`, `src/models/`, `src/utils/`
-- Initialize package.json with Node.js 18+ and TypeScript
-- Add dependencies: express, socket.io, sequelize, jsonwebtoken, bcrypt, redis
-- Configure TypeScript with strict mode enabled
-- Set up ESLint and Prettier for code quality
-- Create Docker Compose for local development (PostgreSQL + Redis)
-
-**Requirements**: Design Section "Infrastructure"
+Create project directory structure: `src/api/`, `src/services/`, `src/models/`, `src/utils/`
+Initialize package.json with Node.js 18+ and TypeScript
+Add dependencies: express, socket.io, sequelize, jsonwebtoken, bcrypt, redis
+Configure TypeScript with strict mode enabled
+Set up ESLint and Prettier for code quality
+Create Docker Compose for local development (PostgreSQL + Redis)
 
 **Acceptance Criteria**:
 - THE project SHALL have a clear directory structure separating concerns (API, services, models)
@@ -27,27 +24,22 @@ This document breaks down the implementation into manageable, actionable tasks b
 - THE Docker Compose SHALL start PostgreSQL and Redis containers successfully
 - THE project SHALL include linting and formatting scripts in package.json
 
-**Estimate**: 1 day
+**Estimate**: 1 day | **Dependencies**: None | **Status**: Not Started
 
-**Dependencies**: None
-
-**Status**: Not Started
+Requirements: Design Section "Infrastructure"
 
 ---
 
-## Task 2: Implement database models and migrations
+- [ ] **2. Implement database models and migrations**
 
-**Description**: Create Sequelize models for Task, User, TimeEntry entities with proper relationships and database migrations.
+Create Sequelize models for Task, User, TimeEntry entities with proper relationships and database migrations.
 
-**Implementation Details**:
-- Define Task model with fields: id, title, description, status, assignee_id, created_by, timestamps
-- Define User model with authentication fields
-- Define TimeEntry model with task relationship
-- Create initial migration scripts for all tables
-- Add database indexes for performance (assignee_id, status, created_at)
-- Implement model associations (hasMany, belongsTo)
-
-**Requirements**: Design Section "Data Models"
+Define Task model with fields: id, title, description, status, assignee_id, created_by, timestamps
+Define User model with authentication fields
+Define TimeEntry model with task relationship
+Create initial migration scripts for all tables
+Add database indexes for performance (assignee_id, status, created_at)
+Implement model associations (hasMany, belongsTo)
 
 **Acceptance Criteria**:
 - THE Task model SHALL include all fields specified in design document
@@ -56,27 +48,22 @@ This document breaks down the implementation into manageable, actionable tasks b
 - WHEN migrations run, THE database schema SHALL match design specifications
 - THE models SHALL validate required fields before saving
 
-**Estimate**: 2 days
+**Estimate**: 2 days | **Dependencies**: Task 1 | **Status**: Not Started
 
-**Dependencies**: Task 1
-
-**Status**: Not Started
+Requirements: Design Section "Data Models"
 
 ---
 
-## Task 3: Create authentication middleware
+- [ ] **3. Create authentication middleware**
 
-**Description**: Implement JWT-based authentication with token generation, validation, and refresh token mechanism.
+Implement JWT-based authentication with token generation, validation, and refresh token mechanism.
 
-**Implementation Details**:
-- Create JWT token generation utility (access: 15min, refresh: 7days)
-- Implement authentication middleware for protected routes
-- Add password hashing using bcrypt (cost factor 12)
-- Create login endpoint POST /api/v1/auth/login
-- Create token refresh endpoint POST /api/v1/auth/refresh
-- Store refresh tokens in HTTP-only cookies
-
-**Requirements**: Design Section "Security Considerations - Authentication"
+Create JWT token generation utility (access: 15min, refresh: 7days)
+Implement authentication middleware for protected routes
+Add password hashing using bcrypt (cost factor 12)
+Create login endpoint POST /api/v1/auth/login
+Create token refresh endpoint POST /api/v1/auth/refresh
+Store refresh tokens in HTTP-only cookies
 
 **Acceptance Criteria**:
 - THE auth system SHALL generate JWT tokens with correct expiration times
@@ -85,28 +72,23 @@ This document breaks down the implementation into manageable, actionable tasks b
 - WHEN invalid token provided, THE middleware SHALL return 401 Unauthorized
 - THE refresh endpoint SHALL issue new access tokens when valid refresh token presented
 
-**Estimate**: 2 days
+**Estimate**: 2 days | **Dependencies**: Task 2 | **Status**: Not Started
 
-**Dependencies**: Task 2
-
-**Status**: Not Started
+Requirements: Design Section "Security Considerations - Authentication"
 
 ---
 
-## Task 4: Implement Task CRUD API endpoints
+- [ ] **4. Implement Task CRUD API endpoints**
 
-**Description**: Create RESTful API endpoints for task management including create, read, update, delete, and list operations.
+Create RESTful API endpoints for task management including create, read, update, delete, and list operations.
 
-**Implementation Details**:
-- POST /api/v1/tasks - Create new task
-- GET /api/v1/tasks - List tasks with pagination and filtering
-- GET /api/v1/tasks/:id - Get single task details
-- PUT /api/v1/tasks/:id - Update task
-- DELETE /api/v1/tasks/:id - Delete task
-- Add request validation using express-validator
-- Implement authorization checks (user can only modify assigned tasks)
-
-**Requirements**: Design Section "API Design"
+POST /api/v1/tasks - Create new task
+GET /api/v1/tasks - List tasks with pagination and filtering
+GET /api/v1/tasks/:id - Get single task details
+PUT /api/v1/tasks/:id - Update task
+DELETE /api/v1/tasks/:id - Delete task
+Add request validation using express-validator
+Implement authorization checks (user can only modify assigned tasks)
 
 **Acceptance Criteria**:
 - THE create endpoint SHALL validate required fields (title, assignee_id)
@@ -116,27 +98,22 @@ This document breaks down the implementation into manageable, actionable tasks b
 - WHEN task created, THE system SHALL return 201 with created task object
 - WHEN invalid data provided, THE system SHALL return 400 with error details
 
-**Estimate**: 3 days
+**Estimate**: 3 days | **Dependencies**: Task 3 | **Status**: Not Started
 
-**Dependencies**: Task 3
-
-**Status**: Not Started
+Requirements: Design Section "API Design"
 
 ---
 
-## Task 5: Set up WebSocket server for real-time updates
+- [ ] **5. Set up WebSocket server for real-time updates**
 
-**Description**: Implement Socket.io server for broadcasting real-time task updates to connected clients.
+Implement Socket.io server for broadcasting real-time task updates to connected clients.
 
-**Implementation Details**:
-- Initialize Socket.io server attached to Express
-- Implement authentication for WebSocket connections (JWT in handshake)
-- Create room-based connections (users join workspace rooms)
-- Broadcast TaskCreated, TaskUpdated, TaskDeleted events
-- Handle client disconnection and reconnection
-- Add heartbeat mechanism for connection health
-
-**Requirements**: Design Section "Architecture - Notification Service"
+Initialize Socket.io server attached to Express
+Implement authentication for WebSocket connections (JWT in handshake)
+Create room-based connections (users join workspace rooms)
+Broadcast TaskCreated, TaskUpdated, TaskDeleted events
+Handle client disconnection and reconnection
+Add heartbeat mechanism for connection health
 
 **Acceptance Criteria**:
 - THE WebSocket server SHALL authenticate connections using JWT tokens
@@ -145,27 +122,22 @@ This document breaks down the implementation into manageable, actionable tasks b
 - THE server SHALL handle graceful disconnections and reconnections
 - THE connection SHALL timeout after 30 seconds of inactivity
 
-**Estimate**: 2 days
+**Estimate**: 2 days | **Dependencies**: Task 4 | **Status**: Not Started
 
-**Dependencies**: Task 4
-
-**Status**: Not Started
+Requirements: Design Section "Architecture - Notification Service"
 
 ---
 
-## Task 6: Implement time tracking functionality
+- [ ] **6. Implement time tracking functionality**
 
-**Description**: Create time entry management with start, stop, and manual entry capabilities.
+Create time entry management with start, stop, and manual entry capabilities.
 
-**Implementation Details**:
-- POST /api/v1/tasks/:id/time-entries - Start time tracking
-- PUT /api/v1/time-entries/:id/stop - Stop active time entry
-- GET /api/v1/tasks/:id/time-entries - List time entries for task
-- Validate only one active time entry per user
-- Calculate duration automatically on stop
-- Support manual time entry with audit trail
-
-**Requirements**: Design Section "Data Models - TimeEntry"
+POST /api/v1/tasks/:id/time-entries - Start time tracking
+PUT /api/v1/time-entries/:id/stop - Stop active time entry
+GET /api/v1/tasks/:id/time-entries - List time entries for task
+Validate only one active time entry per user
+Calculate duration automatically on stop
+Support manual time entry with audit trail
 
 **Acceptance Criteria**:
 - THE system SHALL allow only one active time entry per user at a time
@@ -174,27 +146,22 @@ This document breaks down the implementation into manageable, actionable tasks b
 - WHEN time tracking started, THE system SHALL create active time entry
 - THE manual adjustments SHALL be logged with timestamp and user
 
-**Estimate**: 2 days
+**Estimate**: 2 days | **Dependencies**: Task 4 | **Status**: Not Started
 
-**Dependencies**: Task 4
-
-**Status**: Not Started
+Requirements: Design Section "Data Models - TimeEntry"
 
 ---
 
-## Task 7: Write unit and integration tests
+- [ ] **7. Write unit and integration tests**
 
-**Description**: Implement comprehensive test coverage for services, API endpoints, and business logic.
+Implement comprehensive test coverage for services, API endpoints, and business logic.
 
-**Implementation Details**:
-- Set up Jest testing framework
-- Write unit tests for service layer (90% coverage target)
-- Write integration tests for API endpoints
-- Mock external dependencies (database, Redis)
-- Create test fixtures and factories
-- Add CI pipeline to run tests automatically
-
-**Requirements**: Design Section "Testing Strategy"
+Set up Jest testing framework
+Write unit tests for service layer (90% coverage target)
+Write integration tests for API endpoints
+Mock external dependencies (database, Redis)
+Create test fixtures and factories
+Add CI pipeline to run tests automatically
 
 **Acceptance Criteria**:
 - THE test suite SHALL achieve minimum 85% code coverage
@@ -203,27 +170,22 @@ This document breaks down the implementation into manageable, actionable tasks b
 - THE tests SHALL run successfully in CI pipeline
 - THE tests SHALL complete in under 30 seconds
 
-**Estimate**: 3 days
+**Estimate**: 3 days | **Dependencies**: Task 6 | **Status**: Not Started
 
-**Dependencies**: Task 6
-
-**Status**: Not Started
+Requirements: Design Section "Testing Strategy"
 
 ---
 
-## Task 8: Deploy to staging environment
+- [ ] **8. Deploy to staging environment**
 
-**Description**: Deploy application to staging environment for testing with production-like configuration.
+Deploy application to staging environment for testing with production-like configuration.
 
-**Implementation Details**:
-- Create Kubernetes deployment manifests
-- Configure environment variables for staging
-- Set up PostgreSQL and Redis in staging
-- Configure load balancer and ingress
-- Set up monitoring and logging (Datadog/CloudWatch)
-- Perform smoke tests on staging
-
-**Requirements**: Design Section "Deployment Strategy"
+Create Kubernetes deployment manifests
+Configure environment variables for staging
+Set up PostgreSQL and Redis in staging
+Configure load balancer and ingress
+Set up monitoring and logging (Datadog/CloudWatch)
+Perform smoke tests on staging
 
 **Acceptance Criteria**:
 - THE application SHALL deploy successfully to Kubernetes cluster
@@ -232,11 +194,24 @@ This document breaks down the implementation into manageable, actionable tasks b
 - THE load balancer SHALL route traffic correctly to pods
 - WHEN health check endpoint called, THE system SHALL return 200 OK
 
-**Estimate**: 2 days
+**Estimate**: 2 days | **Dependencies**: Task 7 | **Status**: Not Started
 
-**Dependencies**: Task 7
+Requirements: Design Section "Deployment Strategy"
 
-**Status**: Not Started
+---
+
+## Task Dependencies Diagram
+
+```
+Task 1 (Setup)
+  └─→ Task 2 (Database)
+        └─→ Task 3 (Auth)
+              └─→ Task 4 (API)
+                    ├─→ Task 5 (WebSocket)
+                    └─→ Task 6 (Time Tracking)
+                          └─→ Task 7 (Tests)
+                                └─→ Task 8 (Deploy)
+```
 
 ---
 
@@ -259,21 +234,6 @@ This document breaks down the implementation into manageable, actionable tasks b
 
 ---
 
-## Task Dependencies Diagram
-
-```
-Task 1 (Setup)
-  └─→ Task 2 (Database)
-        └─→ Task 3 (Auth)
-              └─→ Task 4 (API)
-                    ├─→ Task 5 (WebSocket)
-                    └─→ Task 6 (Time Tracking)
-                          └─→ Task 7 (Tests)
-                                └─→ Task 8 (Deploy)
-```
-
----
-
 ## Total Estimates
 
 - **Development**: 17 days
@@ -287,10 +247,12 @@ Task 1 (Setup)
 ## Notes for Agents
 
 **When filling this template:**
-- Each task should be completable in 1-3 days
+- Each task starts with a checkbox `- [ ]` followed by the task number and title in bold
+- Keep tasks completable in 1-3 days
+- Implementation details are listed as bullet points or plain text (no bullet points needed)
 - Include specific file paths and function names when possible
-- Reference requirement IDs or design sections
 - Use THE/WHEN/WHERE format for acceptance criteria (matches requirements format)
-- Keep dependencies explicit and update as tasks complete
+- Estimate, Dependencies, and Status go on one line separated by pipes
+- **Requirements reference goes at the end** of each task (last line before separator)
+- Update checkbox to `- [x]` when task is completed
 - Remove example tasks and replace with your actual implementation plan
-- Update status as work progresses: Not Started → In Progress → Completed → Blocked
