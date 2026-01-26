@@ -1,3 +1,14 @@
+---
+name: Design Authoring
+description: Creating technical design documents that translate requirements into implementable solutions
+category: documentation
+difficulty: intermediate
+tags:
+  - design
+  - documentation
+  - architecture
+---
+
 # Design Authoring Skill
 
 ## Overview
@@ -20,7 +31,15 @@ This skill focuses on creating technical design documents that translate require
 
 ## Templates and Examples
 
-<!-- Add templates and examples for design documents -->
+### Design Document Template
+```markdown
+## Design: [Component Name]
+- **Overview**: [High-level description]
+- **Architecture**: [System components and interactions]
+- **API Design**: [Interfaces and contracts]
+- **Data Model**: [Data structures and relationships]
+- **Trade-offs**: [Key decisions and alternatives considered]
+```
 
 ## Related Skills
 

@@ -1,3 +1,14 @@
+---
+name: Task Breakdown
+description: Breaking down complex work into manageable, actionable tasks
+category: planning
+difficulty: intermediate
+tags:
+  - planning
+  - project-management
+  - estimation
+---
+
 # Task Breakdown Skill
 
 ## Overview
@@ -20,7 +31,17 @@ This skill focuses on breaking down complex work into manageable, actionable tas
 
 ## Templates and Examples
 
-<!-- Add templates and examples for task breakdown -->
+### Task Template
+```markdown
+## Task: [Task Name]
+- **ID**: TASK-XXX
+- **Estimate**: [Time estimate]
+- **Dependencies**: [List of blocking tasks]
+- **Description**: [What needs to be done]
+- **Acceptance Criteria**:
+  - [ ] Criterion 1
+  - [ ] Criterion 2
+```
 
 ## Related Skills
 

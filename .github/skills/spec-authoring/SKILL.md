@@ -1,3 +1,14 @@
+---
+name: Spec Authoring
+description: Writing clear, comprehensive specifications and requirements documents
+category: documentation
+difficulty: intermediate
+tags:
+  - requirements
+  - documentation
+  - planning
+---
+
 # Spec Authoring Skill
 
 ## Overview
@@ -20,7 +31,16 @@ This skill focuses on writing clear, comprehensive specifications and requiremen
 
 ## Templates and Examples
 
-<!-- Add templates and examples for specification documents -->
+### Requirement Template
+```markdown
+## Requirement: [Name]
+- **ID**: REQ-XXX
+- **Priority**: High/Medium/Low
+- **Description**: [Clear description]
+- **Acceptance Criteria**: 
+  - [ ] Criterion 1
+  - [ ] Criterion 2
+```
 
 ## Related Skills
 

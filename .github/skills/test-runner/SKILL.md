@@ -1,3 +1,14 @@
+---
+name: Test Runner
+description: Running, managing, and interpreting test results
+category: testing
+difficulty: beginner
+tags:
+  - testing
+  - quality-assurance
+  - automation
+---
+
 # Test Runner Skill
 
 ## Overview
@@ -20,7 +31,14 @@ This skill focuses on running, managing, and interpreting test results.
 
 ## Templates and Examples
 
-<!-- Add templates and examples for test running workflows -->
+### Test Execution Checklist
+```markdown
+- [ ] Run unit tests: `npm test`
+- [ ] Run integration tests: `npm run test:integration`
+- [ ] Check coverage: `npm run coverage`
+- [ ] Review failed tests
+- [ ] Verify environment setup
+```
 
 ## Related Skills
 

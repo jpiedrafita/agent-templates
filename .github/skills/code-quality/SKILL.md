@@ -1,3 +1,14 @@
+---
+name: Code Quality
+description: Maintaining high code quality standards through reviews, analysis, and best practices
+category: quality
+difficulty: intermediate
+tags:
+  - quality
+  - code-review
+  - best-practices
+---
+
 # Code Quality Skill
 
 ## Overview
@@ -20,7 +31,15 @@ This skill focuses on maintaining high code quality standards through reviews, a
 
 ## Templates and Examples
 
-<!-- Add templates and examples for code quality workflows -->
+### Code Quality Checklist
+```markdown
+- [ ] Code follows style guidelines
+- [ ] No code smells or anti-patterns
+- [ ] Proper error handling
+- [ ] Security vulnerabilities addressed
+- [ ] Performance considerations reviewed
+- [ ] Documentation updated
+```
 
 ## Related Skills
 
