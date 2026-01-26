@@ -257,7 +257,7 @@ CREATE TABLE time_entries (
 ## Dependencies
 
 - **External Services**: SendGrid for transactional emails, AWS S3 for file attachments
-- **Third-party Libraries**: React 18, Express 4, Socket.io, Sequelize ORM
+- **Third-party Libraries**: React 18, Express 4, Socket.io 4, Sequelize ORM 6
 - **Infrastructure**: Kubernetes cluster, managed PostgreSQL, Redis cluster
 
 ## Risks

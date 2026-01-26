@@ -279,8 +279,8 @@ Task 1 (Setup)
 - **Development**: 17 days
 - **Testing**: Included in development tasks
 - **Deployment**: 2 days
-- **Buffer**: 3 days (15%)
-- **Total Timeline**: 4 weeks
+- **Buffer**: 3 days (16%)
+- **Total Timeline**: ~4-5 weeks (22 working days)
 
 ---
 
