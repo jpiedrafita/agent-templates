@@ -27,6 +27,7 @@ High-level description of the solution approach, key technologies, and architect
 - **System Components**: Mermaid diagram showing main components and data flow
 - **Component descriptions**: Purpose and responsibilities of each component
 - **Component Interactions**: How components communicate (request/response, events, etc.)
+- **Table of Contents**: After architecture, include a navigation index linking to main sections
 
 **Example Mermaid**:
 ```mermaid

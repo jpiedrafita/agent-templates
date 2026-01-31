@@ -39,6 +39,23 @@ graph TB
 5. Notification Service receives event and broadcasts to connected clients
 6. Email Worker receives event and sends notification email to assignee
 
+---
+
+## Table of Contents
+
+- [Data Models](#data-models)
+- [API Design](#api-design)
+- [Security Considerations](#security-considerations)
+- [Performance Considerations](#performance-considerations)
+- [Testing Strategy](#testing-strategy)
+- [Deployment Strategy](#deployment-strategy)
+- [Trade-offs and Alternatives](#trade-offs-and-alternatives)
+- [Open Questions](#open-questions)
+- [Dependencies](#dependencies)
+- [Risks](#risks)
+
+---
+
 ## Data Models
 
 ### Entity: Task
