@@ -1,90 +1,153 @@
 # Requirements Document
 
+## Table of Contents
+- [Introduction](#introduction)
+- [Scope](#scope)
+  - [In Scope](#in-scope)
+  - [Out of Scope](#out-of-scope)
+- [Glossary](#glossary)
+- [Functional Requirements](#functional-requirements)
+- [Non-Functional Requirements](#non-functional-requirements)
+- [Assumptions & Constraints](#assumptions--constraints)
+- [Dependencies & Integrations](#dependencies--integrations)
+- [Data & Privacy](#data--privacy)
+- [Notes for Agents](#notes-for-agents)
+- [Definition of Done](#definition-of-done)
+
+---
+
 ## Introduction
 
 [Brief description of what the project does and its main purpose. Focus on the problem being solved and the overall goal.]
 
-**Example**: A task management application that helps remote teams coordinate their work asynchronously. The system enables team members to create, assign, and track tasks with built-in time tracking and reporting capabilities, designed for distributed teams across different time zones.
+---
+
+## Scope
+
+### In Scope
+- [What the system will include]
+- [Key workflows and capabilities]
+- [Supported platforms/environments]
+
+### Out of Scope
+- [What the system will not include]
+- [Explicit exclusions to prevent scope creep]
+
+---
 
 ## Glossary
 
-**[Term_1]**: [Definition and context]
-**[Term_2]**: [Definition and context]
-**[Term_3]**: [Definition and context]
+> Use consistent naming across all docs (requirements/design/tasks). Prefer `Term_Case` for glossary terms.
 
-**Example Terms:**
-- **Task_Board**: The main interface showing all tasks organized by status columns
-- **Time_Entry**: A record of time spent working on a specific task
-- **Team_Workspace**: A shared environment where team members collaborate on projects
+- **[Term_1]**: [Definition and context]
+- **[Term_2]**: [Definition and context]
+- **[Term_3]**: [Definition and context]
 
-## Requirements
+---
 
-### Requirement 1
+## Functional Requirements
+
+> Use IDs so `design.md` and `tasks.md` can reference them (e.g., `REQ-001`).
+
+### REQ-001 — [Short title]
+
+**Priority**: [Must | Should | Could | Won’t]  
+**Status**: [Draft | Approved]  
 
 **User Story**: As a [type of user], I want [goal/objective], so that [benefit/value].
 
-**Acceptance Criteria**
+#### Acceptance Criteria
 
 - THE [System/Component] SHALL [specific action or behavior]
 - WHEN [condition], THE [System/Component] SHALL [response or action]
-- THE [System/Component] SHALL [capability] using [method/technology]
 - WHERE [condition exists], THE [System/Component] SHALL [handling behavior]
 
-**Example:**
+#### Notes / Edge Cases
 
-**User Story**: As a team lead managing a distributed team, I want to create and assign tasks to team members, so that everyone knows their responsibilities and deadlines.
-
-**Acceptance Criteria**
-
-- THE Task_Board SHALL display all tasks organized in columns (To Do, In Progress, Done)
-- WHEN a task is created, THE system SHALL require a title, description, and assignee
-- THE Task_Board SHALL support drag-and-drop to change task status
-- THE system SHALL send email notifications to assignees when tasks are assigned
-- WHERE a task lacks required fields, THE system SHALL prevent creation and display validation errors
+- [Optional: clarify constraints, error cases, validations, and expected messages]
+- [Avoid implementation details; keep tech choices for `design.md`]
 
 ---
 
-### Requirement 2
+## Non-Functional Requirements
 
-**User Story**: As a [type of user], I want [goal/objective], so that [benefit/value].
+> Keep these measurable when possible. Avoid implementation details (tech choices go to `design.md`).
 
-**Acceptance Criteria**
-
-- THE [System/Component] SHALL [specific action or behavior]
-- THE [System/Component] SHALL [capability] with [constraints or limits]
-- WHEN [condition], THE [System/Component] SHALL [response or action]
-- THE [System/Component] SHALL [action] within [performance requirement]
-
-**Example:**
-
-**User Story**: As a team member working on multiple tasks, I want to track time spent on each task, so that we can accurately bill clients and improve project estimates.
-
-**Acceptance Criteria**
-
-- THE Time_Entry SHALL capture start time, end time, and associated task
-- THE system SHALL calculate total time automatically from start/end times
-- WHEN time tracking is active, THE system SHALL display a running timer in the UI
-- THE system SHALL allow manual time entry adjustments with audit trail
-- THE Time_Entry SHALL support adding notes describing work performed
+| ID | Category | Requirement | Metric / Target | Priority |
+|---|---|---|---|---|
+| NFR-001 | Performance | [Requirement] | [p95 latency <= X ms] | [Must/Should/Could] |
+| NFR-002 | Availability | [Requirement] | [>= 99.9% uptime] | [Must/Should/Could] |
+| NFR-003 | Security | [Requirement] | [e.g., MFA required, encryption at rest/in transit] | [Must/Should/Could] |
+| NFR-004 | Observability | [Requirement] | [structured logs + traces + key metrics] | [Must/Should/Could] |
+| NFR-005 | Privacy/Compliance | [Requirement] | [retention <= X days, GDPR rights] | [Must/Should/Could] |
 
 ---
 
-### Requirement 3
+## Assumptions & Constraints
 
-**User Story**: [Add your user story here]
+- **Assumptions**
+  - [Assumption 1]
+  - [Assumption 2]
 
-**Acceptance Criteria**
+- **Constraints**
+  - [Constraint 1: e.g., must be serverless / must run in AWS]
+  - [Constraint 2: e.g., no recurring monthly cost / deploy on-demand]
+  - [Constraint 3: e.g., supported browsers / runtime limits]
 
-- [Add acceptance criteria using THE/WHEN/WHERE format]
+---
+
+## Dependencies & Integrations
+
+| Name | Type | Purpose | Owner | Status |
+|---|---|---|---|---|
+| [Dependency_1] | [API/Service/Library] | [Why needed] | [Team/Vendor] | [TBD/Confirmed] |
+| [Dependency_2] | [API/Service/Library] | [Why needed] | [Team/Vendor] | [TBD/Confirmed] |
+
+---
+
+## Data & Privacy
+
+> Optional, skip if not applicable
+
+### Data Inventory
+
+| Data | Source | Stored? | Retention | Sensitivity | Notes |
+|---|---|---:|---|---|---|
+| [Data_1] | [User/System/3rd party] | [Yes/No] | [X days] | [PII/Non-PII] | [...] |
+| [Data_2] | [...] | [Yes/No] | [...] | [...] | [...] |
+
+### Privacy Requirements
+
+- THE system SHALL [minimize data collected to what is necessary]
+- THE system SHALL [support data export and deletion where applicable]
+- THE system SHALL [define retention and deletion policies]
+- WHERE PII is stored, THE system SHALL [protect it with appropriate access controls]
 
 ---
 
 ## Notes for Agents
 
 **When filling this template:**
-- Keep user stories focused on a single capability or feature
-- Use THE/WHEN/WHERE format for acceptance criteria (following RFC 2119 style)
-- Be specific and measurable in acceptance criteria
-- Include both happy path and error handling scenarios
-- Reference glossary terms consistently (use Term_Case)
-- Remove example content and replace with actual project requirements
+
+- Keep user stories focused on a single capability
+- Use **MUST/SHOULD/COULD/WON’T** for prioritization
+- Use **THE / WHEN / WHERE** format for acceptance criteria (RFC 2119 style)
+- Make acceptance criteria **specific and testable**
+- Include happy path + error handling
+- Reference glossary terms consistently (use `Term_Case`)
+- Avoid implementation details (tech choices belong to `design.md`)
+- Remove placeholder/example content and replace with real requirements
+
+---
+
+## Definition of Done
+
+- [ ] Introduction explains the problem and goal clearly
+- [ ] Scope includes explicit In/Out lists
+- [ ] Glossary contains all key domain terms used in requirements
+- [ ] All functional requirements have IDs, priority, status, and acceptance criteria
+- [ ] NFRs exist and are measurable where possible
+- [ ] Assumptions & constraints are explicit
+- [ ] Dependencies/integrations are listed (even if TBD)
+- [ ] Data & privacy considerations are captured at a minimum level
+- [ ] No examples/placeholders remain
