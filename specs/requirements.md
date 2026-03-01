@@ -1,6 +1,7 @@
 # Requirements Document
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Scope](#scope)
   - [In Scope](#in-scope)
@@ -25,11 +26,13 @@
 ## Scope
 
 ### In Scope
+
 - [What the system will include]
 - [Key workflows and capabilities]
 - [Supported platforms/environments]
 
 ### Out of Scope
+
 - [What the system will not include]
 - [Explicit exclusions to prevent scope creep]
 
