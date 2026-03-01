@@ -1,4 +1,5 @@
 # agent-templates
+
 Copilot instructions, custom agents/skills, and a specs workflow (requirements → design → tasks).
 
 ## Overview
@@ -10,11 +11,14 @@ This is a template repository that provides a structured workflow for software d
 - **`.github/copilot-instructions.md`**: Instructions for GitHub Copilot to understand your project
 - **`.github/agents/`**: Custom agents for specialized tasks
 - **`.github/skills/`**: Reusable skills for common workflows
+- **`.github/prompts/`**: Prompt files (onboarding, common workflows)
 - **`specs/`**: Workflow documents for the development process
 
-## Getting Started
+## Getting Started (Onboarding)
 
-When you first use GitHub Copilot in this repository, it will ask you questions about your project to customize the instructions file.
+1. Run the onboarding prompt: `.github/prompts/onboard.prompt.md` from Copilot Chat / VS Code.
+2. This will fill `PROJECT.md` and align `.github/copilot-instructions.md` to the project.
+3. Then start the workflow from `specs/requirements.md` using `@blueprint` custom agent.
 
 ## Workflow
 
@@ -25,6 +29,7 @@ When you first use GitHub Copilot in this repository, it will ask you questions 
 
 ## Custom Agents
 
-- `@workflow-orchestrator` - **Main orchestrator** that guides you through the complete workflow (requirements → design → tasks). Iterates on each phase and waits for your approval before proceeding to the next phase.
-- `@architect` - Reviews and validates technical designs (can update designs, has web access)
-- `@reviewer` - Performs thorough code reviews (read-only access)
+- `@blueprint` - **Main orchestrator** for onboarding + workflow (requirements → design → tasks). Enforces phase gates.
+- `@architect` - Reviews and improves technical design decisions in `specs/design.md`.
+- `@reviewer` - Performs code reviews (quality, security, best practices).
+- `@test-runner` - Runs tests and reports results.
