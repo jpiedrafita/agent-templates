@@ -31,5 +31,18 @@ This is a template repository that provides a structured workflow for software d
 
 - `@blueprint` - **Main orchestrator** for onboarding + workflow (requirements → design → tasks). Enforces phase gates.
 - `@architect` - Reviews and improves technical design decisions in `specs/design.md`.
+X `@implementer` - Executes tasks based on `specs/tasks.md`.
 - `@reviewer` - Performs code reviews (quality, security, best practices).
-- `@test-runner` - Runs tests and reports results.
+X `@test-runner` - Runs tests and reports results.
+
+## Skills
+
+- `repo-bootstrap` - For setting up new repositories with necessary files and complete `PROJECT.md`.
+X `spec-authoring` - For writing clear and comprehensive requirements and design docs.
+X `design-authoring` - For creating well-structured technical designs.
+X `task-breakdown` - For breaking down designs into actionable tasks.
+X `python-dev` - For Python development tasks, including writing code and tests.
+X `test-authoring` - For writing effective tests based on requirements and design.
+X `issue-authoring` - For creating well-defined GitHub issues from tasks or findings.
+X `test-runner` - For running tests and reporting results.
+X `code-quality` - For ensuring code adheres to best practices and standards.
