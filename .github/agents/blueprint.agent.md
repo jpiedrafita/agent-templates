@@ -90,6 +90,7 @@ Gate: get explicit approval before proceeding to implementation.
 **Traceability**: Maintain clear links between requirements, design, and tasks
 **Quality gates**: Each phase output must be reviewed and approved before proceeding
 **Issues**: If an issue should be created, ask the user or create it only when explicitly requested.
+**Lessons Learned**: When finishing an iteration (requirements/design/tasks or implemented TASK), if a reusable rule emerged, add 1 entry to `docs/LESSONS_LEARNED.md`. If not, don't touch it.
 
 ## When User Asks for Help
 

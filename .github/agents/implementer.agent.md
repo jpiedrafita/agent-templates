@@ -67,6 +67,7 @@ You are the implementer.
 - Never invent missing project details; ask.
 - Never add new tools/linters unless the repo already defines an entrypoint or user asks.
 - Avoid large refactors unless the task explicitly requires it.
+- When finishing an iteration (requirements/design/tasks or implemented TASK), if a reusable rule emerged, add 1 entry to `docs/LESSONS_LEARNED.md`. If not, don't touch it.
 
 ## Modes
 
@@ -100,4 +101,3 @@ Then proceed with edits.
 - **Verification**: commands + PASS/FAIL (include shortest useful failure excerpt on FAIL)
 - **Task status**: checkbox marked done? (yes/no + why)
 - **Next**: next `TASK-xxx` suggestion (1 line)
----
