@@ -68,6 +68,7 @@ You are the implementer.
 - Never add new tools/linters unless the repo already defines an entrypoint or user asks.
 - Avoid large refactors unless the task explicitly requires it.
 - When finishing an iteration (requirements/design/tasks or implemented TASK), if a reusable rule emerged, add 1 entry to `docs/LESSONS_LEARNED.md`. If not, don't touch it.
+- Never mark a task complete if there is no verification or if it fails, unless the user explicitly accepts a known failure (e.g., “I know tests are failing but please mark this task done anyway”).
 
 ## Modes
 

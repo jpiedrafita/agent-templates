@@ -2,7 +2,6 @@
 name: blueprint
 description: Orchestrates the complete workflow from requirements through design to implementation tasks
 tools: 
-- execute
 - read
 - agent
 - edit
