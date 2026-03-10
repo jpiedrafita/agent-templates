@@ -1,129 +1,78 @@
 ---
-name: Task Breakdown
-description: Breaking down designs into manageable, actionable implementation tasks following specs/tasks.md format
-category: planning
-difficulty: intermediate
-tags:
-  - planning
-  - project-management
-  - estimation
-  - implementation
+name: task-breakdown
+description: Break down an approved design into small, actionable tasks in specs/tasks.md (or feature-scoped). Produces TASK-xxx items with Implementation + Verification + traceability.
+argument-hint: "[root|<slug>] [scope]"
+user-invocable: true
+license: MIT
 ---
 
-# Task Breakdown Skill
+# task-breakdown
 
-## Overview
+Purpose: Turn an approved design into a task list that is easy to implement and verify, with clear traceability.
 
-This skill focuses on breaking down technical designs from `specs/design.md` into manageable, actionable implementation tasks. The output follows the checkbox format defined in `specs/tasks.md`.
+## Inputs
 
-## Document Format
+- PROJECT.md (commands, repo conventions, quality gates)
+- Requirements + design for the current scope:
+  - Root: specs/requirements.md, specs/design.md
+  - Feature: specs/features/<slug>/requirements.md, specs/features/<slug>/design.md
 
-Tasks are organized as checkbox items for easy progress tracking:
+## Output
 
-### Task Structure
+- A tasks file for the current scope:
+  - Root: specs/tasks.md
+  - Feature: specs/features/<slug>/tasks.md
 
-```markdown
-- [ ] **N. Task Title**
+## Rules
 
-Brief description of what needs to be done.
+- Tasks MUST be implementable in small, reviewable diffs.
+- One task = one clear objective.
+- Prefer tasks that can be completed in one agent iteration (or S/M/L sizing if you don’t want time).
+- Order tasks so they can be executed top-to-bottom: prerequisites → core functionality → integration → hardening → docs.
+- Do not invent repo commands. If PROJECT.md is unclear, ask.
+- Every task MUST include:
+  - Implementation: lines (one per line)
+  - Verification: lines (one per line)
+  - Refs: pointing to REQ-xxx and/or Design: Section "..."
 
-Implementation details (plain text, one per line):
-Detail 1
-Detail 2
-Detail 3
-
-**Acceptance Criteria**:
-- THE [System/Component] SHALL [specific behavior]
-- WHEN [condition], THE [System/Component] SHALL [action]
-- WHERE [condition], THE [System/Component] SHALL [handling]
-
-**Estimate**: X days | **Dependencies**: Task N | **Status**: Not Started
-
-Requirements: X.X, Y.Y
-```
-
-### Supporting Sections
-
-- **Task Dependencies Diagram**: ASCII art showing task relationships
-- **Milestones**: Grouped tasks with target dates
-- **Total Estimates**: Summary of development time
-
-## Key Capabilities
-
-- Decomposing design into implementable tasks (1-3 days each)
-- Estimating effort and complexity
-- Identifying dependencies between tasks
-- Creating clear acceptance criteria using THE/WHEN/WHERE format
-- Organizing tasks into logical phases and milestones
-
-## Best Practices
-
-- **Right-sized tasks**: Keep each task completable in 1-3 days
-- **Single responsibility**: One clear objective per task
-- **Traceable**: Link each task to design sections and requirements
-- **Testable criteria**: Use THE/WHEN/WHERE format for verification
-- **Clear dependencies**: Explicitly state what must be done first
-- **Realistic estimates**: Include time for testing and documentation
-- **Logical ordering**: Group related tasks and sequence by dependencies
-
-## Working with the Template
-
-1. **Read design**: Understand `specs/design.md` thoroughly
-2. **Review template**: Study `specs/tasks.md` structure and examples
-3. **Identify phases**: Group work logically (setup, core features, deployment)
-4. **Break down work**: Create 1-3 day tasks for each design component
-5. **Define criteria**: Use THE/WHEN/WHERE format matching requirements style
-6. **Estimate effort**: Be realistic, include testing and documentation
-7. **Map dependencies**: Create dependency diagram showing relationships
-8. **Set milestones**: Group tasks with target dates
-9. **Iterate**: Refine estimates and dependencies with team
-
-## Example Task
+## Task template (copy/paste)
 
 ```markdown
-- [ ] **4. Implement Task CRUD API endpoints**
+- [ ] **TASK-001: <title>**
+Short description.
 
-Create RESTful API endpoints for task management including create, read, update, delete, and list operations.
+Implementation:
+<one line>
+<one line>
 
-POST /api/v1/tasks - Create new task
-GET /api/v1/tasks - List tasks with pagination and filtering
-GET /api/v1/tasks/:id - Get single task details
-PUT /api/v1/tasks/:id - Update task
-DELETE /api/v1/tasks/:id - Delete task
-Add request validation using express-validator
-Implement authorization checks (user can only modify assigned tasks)
+Verification:
+<one line command or check>
+<one line command or check>
 
-**Acceptance Criteria**:
-- THE create endpoint SHALL validate required fields (title, assignee_id)
-- THE list endpoint SHALL support pagination with default 25 items per page
-- THE list endpoint SHALL support filtering by status and assignee
-- THE update endpoint SHALL prevent unauthorized modifications
-- WHEN task created, THE system SHALL return 201 with created task object
-- WHEN invalid data provided, THE system SHALL return 400 with error details
-
-**Estimate**: 3 days | **Dependencies**: Task 3 | **Status**: Not Started
-
-Requirements: Design Section "API Design"
+Refs: REQ-001 | Design: Section "<name>"
+Deps: TASK-000 (optional) | Estimate: S/M/L
 ```
 
-## Checkbox Usage
+## How to break down the design
 
-- `- [ ]` : Task not started
-- `- [x]` : Task completed
-- GitHub renders these as interactive checkboxes
+1) Identify deliverables from the design (components, interfaces, data shapes, migrations, tooling).
+2) Create a “setup / scaffolding” task if needed (but only if the repo requires it).
+3) Split by vertical slices when possible (feature-end-to-end), otherwise by layers.
+4) Add explicit dependencies only when they truly block.
+5) Ensure each task has a minimal, realistic Verification: (tests, linters, checks) that the repo supports.
 
-## Related Skills
+## Verification guidance
 
-- **Spec Authoring**: Provides requirements that tasks must satisfy
-- **Design Authoring**: Provides technical design that tasks implement
+- Prefer repo-defined commands from PROJECT.md or existing scripts (Makefile/Taskfile/package scripts).
+- Keep verification “Fast” by default (unit tests / targeted checks).
+- Add “Full” verification only for pre-merge tasks when the repo defines it.
 
-## Tips for Agents
+## Optional: dependency summary
 
-- Start each task with checkbox `- [ ]` and task number in bold
-- Keep implementation details in plain text (no bullet points)
-- Put Estimate, Dependencies, Status on one line with pipes
-- **Always put Requirements reference at the end** (last line before separator)
-- Use THE/WHEN/WHERE format for acceptance criteria
-- Create dependencies diagram showing task relationships
-- Remove example tasks and replace with actual implementation plan
-- Update checkbox to `- [x]` when task is completed
+If there are many tasks (roughly > 8), add a short section at the end of the file:
+
+## Dependencies (optional)
+```markdown
+- TASK-003 depends on TASK-001
+- TASK-004 depends on TASK-002
+```
