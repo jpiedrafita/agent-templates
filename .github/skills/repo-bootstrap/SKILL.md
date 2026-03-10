@@ -2,7 +2,7 @@
 name: repo-bootstrap
 description: Bootstrap repository context by completing PROJECT.md and aligning .github/copilot-instructions.md. Use when starting a new project/feature or when repository context is missing/unclear.
 argument-hint: "[project goal] [stack] [constraints]"
-user-invokable: true
+user-invocable: true
 license: MIT
 ---
 
