@@ -1,141 +1,90 @@
 ---
-name: Design Authoring
-description: Creating technical design documents that translate requirements into implementable solutions following specs/design.md format
-category: design
-difficulty: intermediate
-tags:
-  - design
-  - documentation
-  - architecture
-  - technical-specification
+name: design-authoring
+description: Translate approved requirements into a minimal, implementable technical design (architecture, interfaces, data shapes, trade-offs) following specs/design.md.
+argument-hint: "[root|<slug>] [short design goal]"
+user-invocable: true
+license: MIT
 ---
 
-# Design Authoring Skill
+# design-authoring
 
-## Overview
+Purpose: produce/iterate a design doc that *implements the approved requirements* with minimal noise, ready for task breakdown.
 
-This skill focuses on creating technical design documents that translate requirements from `specs/requirements.md` into implementable solutions. The output follows the format defined in `specs/design.md`.
+## Scope resolution
 
-## Document Format
+- If scope is `root`: use `specs/design.md` (inputs: `specs/requirements.md`)
+- If scope is `<slug>`: use `specs/features/<slug>/design.md` (inputs: `specs/features/<slug>/requirements.md`)
+- If scope is unclear: ask only for `root` or `<slug>`.
 
-Design documents include these main sections:
+## Inputs
 
-### 1. Overview
-High-level description of the solution approach, key technologies, and architectural style.
+- Approved requirements file for the resolved scope.
+- Existing `design.md` for the same scope (if present).
 
-### 2. Architecture
-- **System Components**: Mermaid diagram showing main components and data flow
-- **Component descriptions**: Purpose and responsibilities of each component
-- **Component Interactions**: How components communicate (request/response, events, etc.)
-- **Table of Contents**: After architecture, include a navigation index linking to main sections
+## Output
 
-**Example Mermaid**:
-```mermaid
-graph TB
-    Client[Web Client] -->|HTTPS| API[API Gateway]
-    API -->|REST| Service[Task Service]
-    Service -->|SQL| DB[(PostgreSQL)]
-```
+- Updated `design.md` for the resolved scope, aligned with the repo template.
 
-### 3. Data Models
-SQL schemas or data structures with:
-- Table definitions with all fields and types
-- Indexes for performance
-- Relationships between entities
+## Process
 
-### 4. API Design
-For each endpoint:
-- Method and Path
-- Description
-- Authentication requirements
-- Request body example (JSON)
-- Response example (JSON)
-- Error codes with descriptions
+1. Read the requirements for the resolved scope.
+2. Draft/update `design.md` keeping it minimal and requirements-driven.
+3. Ensure every major section maps to REQ IDs (explicitly reference REQ-xxx where useful).
+4. Maintain “Trade-offs” and “Open Questions” as first-class sections (keep them short).
+5. Stop and ask if requirements are missing/ambiguous (do not invent).
 
-### 5. Cross-cutting Concerns
-- **Security**: Authentication, authorization, data protection
-- **Performance**: Expected load, caching, optimization
-- **Testing**: Unit, integration, end-to-end strategies
-- **Deployment**: Infrastructure, rollout plan, monitoring
+## Design guidelines (minimal)
 
-### 6. Trade-offs and Alternatives
-Document key decisions with:
-- Chosen approach description
-- Alternatives considered (with pros/cons)
-- Rationale for the choice
+- Prefer “shapes” and short bullets over large payload examples.
+- Prefer interfaces/contracts over implementation details.
+- Use diagrams only when they clarify the architecture.
 
-## Key Capabilities
+## Required sections (keep concise)
 
-- Creating system architecture diagrams with Mermaid
-- Defining database schemas and relationships
-- Documenting REST APIs with examples
-- Analyzing and documenting technical trade-offs
-- Considering security, performance, and operational aspects
+1) **Overview**
+- Goal and non-goals (1–3 bullets each)
+- Assumptions / constraints (brief)
 
-## Best Practices
+2) **Architecture**
+- Components + responsibilities (bullets)
+- Mermaid diagram (only if it improves clarity)
+- Data/control flow at a high level
 
-- **Requirements-driven**: Every design element should trace back to requirements
-- **Start high-level**: Begin with architecture, then add details progressively
-- **Concrete examples**: Include actual JSON, SQL, and code snippets
-- **Justify decisions**: Document why, not just what
-- **Consider operations**: Think about deployment, monitoring, scaling
-- **Visual clarity**: Use diagrams for complex interactions
-- **Complete API specs**: Include request, response, and error examples
+3) **Interfaces**
+Include only what applies (remove empty subsections):
+- API (REST/GraphQL)
+- Events / messaging
+- CLI
+- UI
+- Jobs / schedulers
+For each interface: purpose + inputs/outputs (shape) + error handling rules.
 
-## Working with the Template
+4) **Data shapes**
+- Key entities/records and their fields at a conceptual level
+- Persistence is optional: describe only if the project needs it
 
-1. **Read requirements**: Understand `specs/requirements.md` thoroughly
-2. **Review template**: Study `specs/design.md` structure and examples
-3. **Draft architecture**: Start with high-level component diagram
-4. **Define data models**: Design database schema for requirements
-5. **Specify APIs**: Document all endpoints with examples
-6. **Address quality attributes**: Security, performance, testing, deployment
-7. **Document decisions**: Explain key trade-offs and alternatives
-8. **Iterate**: Refine based on feedback
+5) **Cross-cutting**
+- Security
+- Observability (logging/metrics/tracing) if relevant
+- Performance/scalability notes (only if requirements imply it)
+- Testing strategy at a high level (unit/integration boundaries)
 
-## Example API Design
+6) **Trade-offs**
+- 2–5 key decisions max
+- For each: Decision + Alternatives + Rationale (short)
 
-```markdown
-### Endpoint: Create Task
+7) **Open Questions**
+- Unknowns that block tasks or require user decision
+- Keep it actionable
 
-- **Method**: POST
-- **Path**: `/api/v1/tasks`
-- **Description**: Creates a new task and assigns it to a team member
-- **Authentication**: Required (JWT token)
-- **Request**:
-  ```json
-  {
-    "title": "Implement user authentication",
-    "description": "Add JWT-based auth with refresh tokens",
-    "assignee_id": "550e8400-e29b-41d4-a716-446655440000",
-    "due_date": "2024-12-31T23:59:59Z"
-  }
-  ```
-- **Response** (201 Created):
-  ```json
-  {
-    "id": "123e4567-e89b-12d3-a456-426614174000",
-    "title": "Implement user authentication",
-    "status": "todo",
-    "created_at": "2024-01-15T10:30:00Z"
-  }
-  ```
-- **Error Codes**: 
-  - 400: Invalid request body
-  - 401: Unauthorized
-  - 404: Assignee not found
-```
+## Rules
 
-## Related Skills
+- Do not introduce new scope beyond approved requirements.
+- Do not add long code snippets or full schemas unless the requirements demand it.
+- Keep the document template-aligned; delete unused sections rather than leaving placeholders.
+- If a decision needs permanence, suggest an ADR (do not auto-create unless asked).
 
-- **Spec Authoring**: Provides input requirements
-- **Task Breakdown**: Uses design as input for implementation planning
+## Final response
 
-## Tips for Agents
-
-- Use Mermaid for architecture diagrams (proper markdown code blocks)
-- Include version numbers for all technologies and libraries
-- Provide concrete examples, not just placeholders
-- Link design elements back to specific requirements (by requirement number or section)
-- Remove the task management example (all Overview, Architecture, Data Models, API Design sections) and replace with actual project design
-- Keep "Notes for Agents" section until document is finalized
+- Summarize edits in 3–5 bullets.
+- If blocked: list only the missing answers needed to proceed.
