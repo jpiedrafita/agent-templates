@@ -4,106 +4,108 @@ Copilot instructions, custom agents/skills, and a specs workflow (requirements �
 
 ## Overview
 
-This is a template repository that provides a structured workflow for software development projects using GitHub Copilot custom agents.
+This repository provides a structured, gated workflow for specs-driven development using GitHub Copilot custom agents + reusable skills.
 
 ## Structure
 
-- **`.github/copilot-instructions.md`**: Instructions for GitHub Copilot to understand your project
-- **`.github/agents/`**: Custom agents for specialized tasks
-- **`.github/skills/`**: Reusable skills for common workflows
-- **`.github/prompts/`**: Prompt files (onboarding, common workflows)
-- **`specs/`**: Workflow documents for the development process
+- .github/copilot-instructions.md — Copilot repository rules (source of truth: PROJECT.md)
+- .github/agents/ — Custom agents
+- .github/skills/ — Reusable skills
+- .github/prompts/ — Prompt files (onboarding, common workflows)
+- specs/ — Workflow documents (requirements/design/tasks)
+
+## Install into an existing repo
+
+Recommended: run the installer from your project root. It copies docs/agents/skills without cloning (no .git).
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/jpiedrafita/agent-templates/main/scripts/install.sh | bash -s -- --repo jpiedrafita/agent-templates --ref main
+```
+
+Options:
+
+- --force overwrite existing files (default is “do not overwrite”)
+- --no-lessons skip LESSONS_LEARNED.md
+
+Example (force):
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/jpiedrafita/agent-templates/main/scripts/install.sh | bash -s -- --repo jpiedrafita/agent-templates --ref main --force
+````
+
+After install:
+
+- open Copilot Chat and run .github/prompts/onboard.prompt.md
+- commit the changes
 
 ## Getting Started (Onboarding)
 
-1. Run the onboarding prompt: `.github/prompts/onboard.prompt.md` from Copilot Chat / VS Code.
-2. This will fill `PROJECT.md` and align `.github/copilot-instructions.md` to the project.
-3. Then start the workflow from `specs/requirements.md` using `@blueprint` custom agent.
+1. Run: .github/prompts/onboard.prompt.md (Copilot Chat / VS Code)
+2. Outcome:
+   - PROJECT.md filled (source of truth)
+   - .github/copilot-instructions.md aligned + workflow gates
+3. Start from requirements using @blueprint.
+
+If PROJECT.md still contains [...], stop and complete it.
 
 ## Workflow
 
-1. **Requirements** (`specs/requirements.md`) → Define what needs to be built
-2. **Design** (`specs/design.md`) → Create technical design documents
-3. **Tasks** (`specs/tasks.md`) → Break down work into actionable items
-4. **Implementation** → Execute tasks with quality checks
-
-## How to use this workflow
-
-This repo enforces a **gated flow**:
-
 1) Requirements → 2) Design → 3) Tasks → 4) Implementation
-
-### 0) Onboarding (once per repo)
-
-From Copilot Chat / VS Code:
-
-- Run: `.github/prompts/onboard.prompt.md`
-- Outcome:
-  - `PROJECT.md` filled (source of truth)
-  - `.github/copilot-instructions.md` aligned to the repo + workflow gates
-
-If `PROJECT.md` still contains `[...]`, stop here and complete it.
 
 ### 1) Greenfield project (root scope)
 
-In Copilot Chat:
-
-- `@blueprint start requirements (root). Goal: <one sentence>`
-- Approve `specs/requirements.md`
-- `@blueprint proceed to design (root)`
-- Optional: `@architect review design (root)`
-- Approve `specs/design.md`
-- `@blueprint proceed to tasks (root)`
-- Approve `specs/tasks.md`
+- @blueprint start requirements (root). Goal: <one sentence>
+- Approve specs/requirements.md
+- @blueprint proceed to design (root)
+- Optional: @architect review design (root)
+- Approve specs/design.md
+- @blueprint proceed to tasks (root)
+- Approve specs/tasks.md
 
 ### 2) New feature on an existing project (feature scope)
 
-Pick a slug, e.g. `user-auth`.
+Pick a slug, e.g. user-auth.
 
-In Copilot Chat:
-
-- `@blueprint start requirements (user-auth). Goal: <one sentence>`
-  - writes `specs/features/user-auth/requirements.md`
+- @blueprint start requirements (user-auth). Goal: <one sentence>
+  - writes specs/features/user-auth/requirements.md
 - Approve requirements
-- `@blueprint proceed to design (user-auth)`
-  - writes `specs/features/user-auth/design.md`
-- Optional: `@architect review design (user-auth)`
+- @blueprint proceed to design (user-auth)
+  - writes specs/features/user-auth/design.md
+- Optional: @architect review design (user-auth)
 - Approve design
-- `@blueprint proceed to tasks (user-auth)`
-  - writes `specs/features/user-auth/tasks.md`
+- @blueprint proceed to tasks (user-auth)
+  - writes specs/features/user-auth/tasks.md
 
 ### 3) Implement tasks
 
-One task at a time:
-
-- `@implementer plan TASK-001 (root|user-auth)`
-- `@implementer act TASK-001 (root|user-auth)`
+- @implementer plan TASK-001 (root|user-auth)
+- @implementer act TASK-001 (root|user-auth)
 
 Testing:
 
-- `@test-runner fast` (during dev)
-- `@test-runner full` (pre-merge)
+- @test-runner fast (during dev)
+- @test-runner full (pre-merge)
 
 ### 4) Review before merge
 
-- `@reviewer review active PR`
+- @reviewer review active PR
 
 ## Custom Agents
 
-- `@blueprint` - **Main orchestrator** for onboarding + workflow (requirements → design → tasks). Enforces phase gates.
-- `@architect` - Reviews and improves technical design decisions in `specs/design.md`.
-- `@implementer` - Executes tasks based on `specs/tasks.md`.
-- `@reviewer` - Performs code reviews (quality, security, best practices).
-- `@test-runner` - Runs tests and reports results.
+- @blueprint — Orchestrator for onboarding + requirements → design → tasks (phase gates)
+- @architect — Reviews and improves design decisions in specs/design.md
+- @implementer — Implements TASK-xxx from specs/tasks.md (plan/act modes)
+- @reviewer — Code review (correctness, security, maintainability, tests)
+- @test-runner — Runs tests (fast/full) and diagnoses failures
 
 ## Skills
 
-- `repo-bootstrap` - For setting up new repositories with necessary files and complete `PROJECT.md`.1
-- `spec-authoring` - For writing clear and comprehensive requirements and design docs.
-- `design-authoring` - For creating well-structured technical designs.
-- `task-breakdown` - For breaking down designs into actionable tasks.
-- `python-dev` - For Python development tasks, including writing code and tests.
-- `test-authoring` - For writing effective tests based on requirements and design.
-- `issue-authoring` - For creating well-defined GitHub issues from tasks or findings.
-- `test-runner` - For running tests and reporting results.
-- `code-quality` - For ensuring code adheres to best practices and standards.
+- repo-bootstrap — Complete PROJECT.md and align .github/copilot-instructions.md
+- spec-authoring — Write requirements (specs/requirements.md)
+- design-authoring — Write design (specs/design.md)
+- task-breakdown — Produce tasks (specs/tasks.md) with Verification + traceability
+- test-authoring — Write tests aligned with TASK Verification / REQ criteria
+- test-runner — Run tests in fast/full modes and report results
+- issue-authoring — Draft/create well-defined GitHub issues from tasks/findings
+- code-quality — Minimal quality checklist + repo-aligned checks
+- python-dev — Python overlay conventions (layout, logging, pytest strategy)
