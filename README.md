@@ -106,4 +106,4 @@ X `python-dev` - For Python development tasks, including writing code and tests.
 - `test-authoring` - For writing effective tests based on requirements and design.
 - `issue-authoring` - For creating well-defined GitHub issues from tasks or findings.
 X `test-runner` - For running tests and reporting results.
-X `code-quality` - For ensuring code adheres to best practices and standards.
+- `code-quality` - For ensuring code adheres to best practices and standards.

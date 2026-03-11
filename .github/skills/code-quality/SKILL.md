@@ -1,46 +1,58 @@
 ---
-name: Code Quality
-description: Maintaining high code quality standards through reviews, analysis, and best practices
-category: quality
-difficulty: intermediate
-tags:
-  - quality
-  - code-review
-  - best-practices
+name: code-quality
+description: Apply a minimal, repeatable quality checklist to changes (correctness, security, maintainability, tests) and suggest repo-aligned checks without inventing tooling.
+argument-hint: "[scope] [what changed]"
+user-invocable: true
+license: MIT
 ---
 
-# Code Quality Skill
+# code-quality
 
-## Overview
+Purpose: Keep quality high with a short, consistent checklist and repo-aligned verification steps.
 
-This skill focuses on maintaining high code quality standards through reviews, analysis, and best practices.
+## Inputs
 
-## Key Capabilities
+- PROJECT.md (repo conventions, how to run, quality gates)
+- Active PR or changed files (if available)
+- Existing tooling config (pyproject.toml, go.mod, package.json, CI workflows, etc.)
 
-- Performing code reviews
-- Running static analysis tools
-- Identifying code smells and anti-patterns
-- Ensuring coding standards compliance
+## Rules
 
-## Best Practices
+- Do not invent tooling. Prefer repo-provided commands (PROJECT.md, scripts, CI).
+- Keep suggestions minimal and actionable.
+- If a check cannot be run, propose it as a follow-up (do not assume it passed).
 
-- Use automated tools for consistency checks
-- Focus on readability and maintainability
-- Address security vulnerabilities promptly
-- Document complex logic
+## Checklist (prioritized)
 
-## Templates and Examples
+1) Correctness
+- Edge cases and error handling
+- Input validation and safe defaults
 
-### Code Quality Checklist
-```markdown
-- [ ] Code follows style guidelines
-- [ ] No code smells or anti-patterns
-- [ ] Proper error handling
-- [ ] Security vulnerabilities addressed
-- [ ] Performance considerations reviewed
-- [ ] Documentation updated
-```
+2) Security
+- Secrets and credentials handling
+- AuthN/AuthZ assumptions
+- Unsafe deserialization / injection risks (where relevant)
 
-## Related Skills
+3) Maintainability
+- Naming, structure, single-responsibility
+- Avoid unnecessary complexity
 
-- Test Runner
+4) Tests
+- New behavior covered by tests (or clear reason why not)
+- Verification command exists and is documented
+
+5) Performance (only if relevant)
+- Obvious hot paths, N+1 style issues, excessive I/O
+
+## Suggested checks (only if repo defines them)
+
+- Tests: use PROJECT.md verification or existing scripts
+- Lint/format/typecheck/build: only if repo has an entrypoint for them (Makefile/Taskfile/package scripts/CI)
+
+## Output format
+
+- Critical issues (must fix)
+- Major issues
+- Minor/nits
+- Suggested checks (commands, if available)
+- Summary (3 bullets)
