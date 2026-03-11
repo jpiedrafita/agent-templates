@@ -98,12 +98,12 @@ Testing:
 
 ## Skills
 
-- `repo-bootstrap` - For setting up new repositories with necessary files and complete `PROJECT.md`.
+- `repo-bootstrap` - For setting up new repositories with necessary files and complete `PROJECT.md`.1
 - `spec-authoring` - For writing clear and comprehensive requirements and design docs.
-X `design-authoring` - For creating well-structured technical designs.
-X `task-breakdown` - For breaking down designs into actionable tasks.
+- `design-authoring` - For creating well-structured technical designs.
+- `task-breakdown` - For breaking down designs into actionable tasks.
 X `python-dev` - For Python development tasks, including writing code and tests.
-X `test-authoring` - For writing effective tests based on requirements and design.
-X `issue-authoring` - For creating well-defined GitHub issues from tasks or findings.
+- `test-authoring` - For writing effective tests based on requirements and design.
+- `issue-authoring` - For creating well-defined GitHub issues from tasks or findings.
 X `test-runner` - For running tests and reporting results.
 X `code-quality` - For ensuring code adheres to best practices and standards.
