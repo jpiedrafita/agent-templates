@@ -102,7 +102,7 @@ Testing:
 - `spec-authoring` - For writing clear and comprehensive requirements and design docs.
 - `design-authoring` - For creating well-structured technical designs.
 - `task-breakdown` - For breaking down designs into actionable tasks.
-X `python-dev` - For Python development tasks, including writing code and tests.
+- `python-dev` - For Python development tasks, including writing code and tests.
 - `test-authoring` - For writing effective tests based on requirements and design.
 - `issue-authoring` - For creating well-defined GitHub issues from tasks or findings.
 - `test-runner` - For running tests and reporting results.
