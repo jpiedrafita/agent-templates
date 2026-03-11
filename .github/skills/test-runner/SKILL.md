@@ -1,45 +1,31 @@
 ---
-name: Test Runner
-description: Running, managing, and interpreting test results
-category: testing
-difficulty: beginner
-tags:
-  - testing
-  - quality-assurance
-  - automation
+name: test-runner
+description: Run tests in Fast/Full modes using repo-defined entrypoints (PROJECT.md/scripts) and report minimal, actionable results.
+argument-hint: "[fast|full] [root|<slug>] [optional: TASK-xxx]"
+user-invocable: true
+license: MIT
 ---
 
-# Test Runner Skill
+# test-runner
 
-## Overview
+Purpose: Execute tests with minimal friction and report results clearly.
 
-This skill focuses on running, managing, and interpreting test results.
+## Inputs
+- PROJECT.md (how to run / quality gates)
+- Repo scripts/entrypoints (Makefile/Taskfile/package scripts/CI)
+- Optional: TASK-xxx Verification lines (if available)
 
-## Key Capabilities
+## Modes
+- Fast (default): run tests only, smallest set that gives quick feedback.
+- Full: run the full suite as defined by the repo (may include integration/e2e).
 
-- Executing test suites
-- Analyzing test failures
-- Managing test environments
-- Reporting test coverage
+## Command selection (prefer repo entrypoints)
+Pick commands in this order:
+1) PROJECT.md
+2) Repo entrypoints: make/task/just/package scripts
+3) Fallback by stack if no entrypoint exists (ask before running if unsure)
 
-## Best Practices
-
-- Run tests early and often
-- Investigate failures promptly
-- Maintain test data and fixtures
-- Monitor test performance and flakiness
-
-## Templates and Examples
-
-### Test Execution Checklist
-```markdown
-- [ ] Run unit tests: `npm test`
-- [ ] Run integration tests: `npm run test:integration`
-- [ ] Check coverage: `npm run coverage`
-- [ ] Review failed tests
-- [ ] Verify environment setup
-```
-
-## Related Skills
-
-- Code Quality
+## Output
+- Mode: Fast/Full
+- Commands executed + exit code
+- Short failure excerpt + pointer when
