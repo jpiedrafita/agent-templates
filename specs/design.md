@@ -6,6 +6,7 @@
 - [Architecture](#architecture)
   - [System Components](#system-components)
   - [Component Interactions](#component-interactions)
+- [Module Boundaries](#module-boundaries)
 - [Data Models](#data-models)
 - [Interfaces](#interfaces)
 - [Security Considerations](#security-considerations)
@@ -73,7 +74,7 @@ graph TD
 
 ### Component Interactions
 
-#### [Flow_001 - Flow name] 
+#### [Flow_001 - Flow name]
 
 **Goal**: [What is the purpose of this flow?]
 
@@ -85,6 +86,19 @@ graph TD
 **Failure modes:**
 
 - WHEN **[validation fails]**, THE system SHALL **[action]**
+
+---
+
+## Module Boundaries
+
+### [Module/Service/Component Name]
+
+- **Public interface**: [What the rest of the system depends on]
+- **Encapsulated logic**: [What complexity stays inside this boundary]
+- **Why this boundary exists**: [How it reduces coupling or ambiguity]
+- **Testing notes**: [How the boundary helps isolate tests]
+
+> Prefer deep modules: simple outside, meaningful logic inside. Avoid spreading one business rule across many shallow modules unless there is a strong reason.
 
 ---
 
@@ -278,9 +292,10 @@ graph TD
 **When filling this template:**
 
 - Keep this document aligned with `specs/requirements.md` (no new scope).
-- Keep diagrams high-level (3–7 components).
+- Keep diagrams high-level (3-7 components).
 - Prefer shapes and bullets over long examples.
 - Capture key decisions in Trade-offs with a short rationale.
-- Keep Open Questions updated; unresolved items block “Approved”.
+- Keep Open Questions updated; unresolved items block `Approved`.
+- Prefer deep module boundaries with simple interfaces and encapsulated logic.
 - Remove placeholders and this section when finalizing.
 - Remove this notes section in final document

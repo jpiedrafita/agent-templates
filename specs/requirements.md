@@ -6,11 +6,14 @@
 - [Scope](#scope)
   - [In Scope](#in-scope)
   - [Out of Scope](#out-of-scope)
+- [Open Decisions](#open-decisions)
+- [Assumptions](#assumptions)
+  - [Confirmed Assumptions](#confirmed-assumptions)
+  - [Unconfirmed Assumptions](#unconfirmed-assumptions)
 - [Glossary](#glossary)
 - [Functional Requirements](#functional-requirements)
 - [Non-Functional Requirements](#non-functional-requirements)
-- [Assumptions & Constraints](#assumptions--constraints)
-- [Dependencies & Integrations](#dependencies--integrations)
+- [Constraints & Dependencies](#constraints--dependencies)
 - [Data & Privacy](#data--privacy)
 - [Notes for Agents](#notes-for-agents)
 - [Definition of Done](#definition-of-done)
@@ -38,6 +41,27 @@
 
 ---
 
+## Open Decisions
+
+- [Decision] — Impact: [Low/Med/High] — Needed before: [requirements/design/tasks]
+- [Decision] — Impact: [Low/Med/High] — Needed before: [...]
+
+---
+
+## Assumptions
+
+### Confirmed Assumptions
+
+- [Confirmed assumption]
+- [Confirmed assumption]
+
+### Unconfirmed Assumptions
+
+- [Unconfirmed assumption that is currently shaping the draft]
+- [Unconfirmed assumption that still needs user input]
+
+---
+
 ## Glossary
 
 > Use consistent naming across all docs (requirements/design/tasks). Prefer `Term_Case` for glossary terms.
@@ -54,8 +78,8 @@
 
 ### REQ-001 — [Short title]
 
-**Priority**: [Must | Should | Could | Won’t]  
-**Status**: [Draft | Approved]  
+**Priority**: [Must | Should | Could | Won't]
+**Status**: [Draft | Approved]
 
 **User Story**: As a [type of user], I want [goal/objective], so that [benefit/value].
 
@@ -67,7 +91,7 @@
 
 #### Notes / Edge Cases
 
-- [Optional: clarify constraints, error cases, validations, and expected messages]
+- [Clarify constraints, error cases, validations, and expected messages]
 - [Avoid implementation details; keep tech choices for `design.md`]
 
 ---
@@ -77,7 +101,7 @@
 > Keep these measurable when possible. Avoid implementation details (tech choices go to `design.md`).
 
 | ID | Category | Requirement | Metric / Target | Priority |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | NFR-001 | Performance | [Requirement] | [p95 latency <= X ms] | [Must/Should/Could] |
 | NFR-002 | Availability | [Requirement] | [>= 99.9% uptime] | [Must/Should/Could] |
 | NFR-003 | Security | [Requirement] | [e.g., MFA required, encryption at rest/in transit] | [Must/Should/Could] |
@@ -86,25 +110,24 @@
 
 ---
 
-## Assumptions & Constraints
+## Constraints & Dependencies
 
-- **Assumptions**
-  - [Assumption 1]
-  - [Assumption 2]
+### Constraints
 
-- **Constraints**
-  - [Constraint 1: e.g., must be serverless / must run in AWS]
-  - [Constraint 2: e.g., no recurring monthly cost / deploy on-demand]
-  - [Constraint 3: e.g., supported browsers / runtime limits]
+- [Constraint 1: technical, business, compliance, runtime, budget, or rollout]
+- [Constraint 2]
 
----
-
-## Dependencies & Integrations
+### Dependencies & Integrations
 
 | Name | Type | Purpose | Owner | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [Dependency_1] | [API/Service/Library] | [Why needed] | [Team/Vendor] | [TBD/Confirmed] |
 | [Dependency_2] | [API/Service/Library] | [Why needed] | [Team/Vendor] | [TBD/Confirmed] |
+
+### Compatibility / Rollout Notes
+
+- [Backward compatibility requirement or migration note]
+- [Rollout expectation, feature flag, staged release, etc.]
 
 ---
 
@@ -115,7 +138,7 @@
 ### Data Inventory
 
 | Data | Source | Stored? | Retention | Sensitivity | Notes |
-|---|---|---:|---|---|---|
+| --- | --- | ---: | --- | --- | --- |
 | [Data_1] | [User/System/3rd party] | [Yes/No] | [X days] | [PII/Non-PII] | [...] |
 | [Data_2] | [...] | [Yes/No] | [...] | [...] | [...] |
 
@@ -133,12 +156,13 @@
 **When filling this template:**
 
 - Keep user stories focused on a single capability
-- Use **MUST/SHOULD/COULD/WON’T** for prioritization
+- Use **MUST/SHOULD/COULD/WON'T** for prioritization
 - Use **THE / WHEN / WHERE** format for acceptance criteria (RFC 2119 style)
 - Make acceptance criteria **specific and testable**
 - Include happy path + error handling
 - Reference glossary terms consistently (use `Term_Case`)
 - Avoid implementation details (tech choices belong to `design.md`)
+- Prefer asking the user instead of silently assuming material decisions
 - Remove placeholder/example content and replace with real requirements
 
 ---
@@ -147,10 +171,11 @@
 
 - [ ] Introduction explains the problem and goal clearly
 - [ ] Scope includes explicit In/Out lists
+- [ ] Open decisions are captured or explicitly resolved
+- [ ] Assumptions are separated into confirmed vs unconfirmed
 - [ ] Glossary contains all key domain terms used in requirements
 - [ ] All functional requirements have IDs, priority, status, and acceptance criteria
 - [ ] NFRs exist and are measurable where possible
-- [ ] Assumptions & constraints are explicit
-- [ ] Dependencies/integrations are listed (even if TBD)
+- [ ] Constraints and dependencies are explicit
 - [ ] Data & privacy considerations are captured at a minimum level
 - [ ] No examples/placeholders remain

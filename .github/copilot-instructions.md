@@ -9,16 +9,18 @@
 
 Follow this order and do not skip steps:
 
-1) Requirements: `specs/requirements.md`
-2) Design: `specs/design.md`
-3) Tasks: `specs/tasks.md`
-4) Implementation (out of scope here)
+1) Discovery (when the change is substantial or ambiguous)
+2) Requirements: `specs/requirements.md`
+3) Design: `specs/design.md`
+4) Tasks: `specs/tasks.md`
+5) Implementation (out of scope here)
 
 **Gates**:
 
 - Do not produce or modify `specs/design.md` until requirements are approved.
 - Do not produce or modify `specs/tasks.md` until design is approved.
 - Every task MUST reference `REQ-xxx` or a Design section.
+- Prefer vertical slices in `specs/tasks.md` over horizontal layer-by-layer decomposition.
 
 ## Working rules
 
@@ -29,7 +31,7 @@ Follow this order and do not skip steps:
 
 ## Custom agents
 
-- `@blueprint`: orchestrates requirements → design → tasks, and enforces gates.
+- `@blueprint`: orchestrates discovery -> requirements -> design -> tasks, and enforces gates.
 - `@architect`: reviews and improves `specs/design.md` (architecture decisions, trade-offs).
 - `@reviewer`: code review (quality, security, best practices).
 - `@test-runner`: runs tests and reports results.
@@ -38,6 +40,7 @@ Follow this order and do not skip steps:
 
 Only use if present under `.github/skills/`:
 
+- discovery-authoring
 - spec-authoring
 - design-authoring
 - task-breakdown

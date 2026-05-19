@@ -8,7 +8,7 @@ license: MIT
 
 # design-authoring
 
-Purpose: produce/iterate a design doc that *implements the approved requirements* with minimal noise, ready for task breakdown.
+Purpose: produce/iterate a design doc that *implements the approved requirements* with minimal noise, clear trade-offs, and boundaries that support implementation.
 
 ## Scope resolution
 
@@ -30,19 +30,22 @@ Purpose: produce/iterate a design doc that *implements the approved requirements
 1. Read the requirements for the resolved scope.
 2. Draft/update `design.md` keeping it minimal and requirements-driven.
 3. Ensure every major section maps to REQ IDs (explicitly reference REQ-xxx where useful).
-4. Maintain “Trade-offs” and “Open Questions” as first-class sections (keep them short).
+4. Maintain `Trade-offs` and `Open Questions` as first-class sections (keep them short).
 5. Stop and ask if requirements are missing/ambiguous (do not invent).
 
-## Design guidelines (minimal)
+## Design guidelines
 
-- Prefer “shapes” and short bullets over large payload examples.
+- Prefer `shapes` and short bullets over large payload examples.
 - Prefer interfaces/contracts over implementation details.
 - Use diagrams only when they clarify the architecture.
+- Prefer deep modules: simple external interfaces with complexity encapsulated inside clear boundaries.
+- Avoid shallow modules that spread business logic across many files, layers, or services without a strong reason.
+- Optimize for testability and implementation isolation.
 
 ## Required sections (keep concise)
 
 1) **Overview**
-- Goal and non-goals (1–3 bullets each)
+- Goal and non-goals (1-3 bullets each)
 - Assumptions / constraints (brief)
 
 2) **Architecture**
@@ -50,7 +53,12 @@ Purpose: produce/iterate a design doc that *implements the approved requirements
 - Mermaid diagram (only if it improves clarity)
 - Data/control flow at a high level
 
-3) **Interfaces**
+3) **Module boundaries**
+- Public interface for each major module/service/component
+- Internal responsibilities that should stay encapsulated
+- Coupling or ownership risks if boundaries are weak
+
+4) **Interfaces**
 Include only what applies (remove empty subsections):
 - API (REST/GraphQL)
 - Events / messaging
@@ -59,21 +67,21 @@ Include only what applies (remove empty subsections):
 - Jobs / schedulers
 For each interface: purpose + inputs/outputs (shape) + error handling rules.
 
-4) **Data shapes**
+5) **Data shapes**
 - Key entities/records and their fields at a conceptual level
 - Persistence is optional: describe only if the project needs it
 
-5) **Cross-cutting**
+6) **Cross-cutting**
 - Security
 - Observability (logging/metrics/tracing) if relevant
 - Performance/scalability notes (only if requirements imply it)
 - Testing strategy at a high level (unit/integration boundaries)
 
-6) **Trade-offs**
-- 2–5 key decisions max
+7) **Trade-offs**
+- 2-5 key decisions max
 - For each: Decision + Alternatives + Rationale (short)
 
-7) **Open Questions**
+8) **Open Questions**
 - Unknowns that block tasks or require user decision
 - Keep it actionable
 
@@ -86,5 +94,5 @@ For each interface: purpose + inputs/outputs (shape) + error handling rules.
 
 ## Final response
 
-- Summarize edits in 3–5 bullets.
+- Summarize edits in 3-5 bullets.
 - If blocked: list only the missing answers needed to proceed.
