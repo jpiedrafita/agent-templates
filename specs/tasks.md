@@ -17,6 +17,9 @@ Parallel: [yes/no]
 Estimate: [S/M/L]
 Deps: [None | TASK-00X]
 
+Implementation constraints:
+[Keep changes surgical. Follow existing patterns. Do not refactor unrelated code.]
+
 Implementation:
 [One implementation line per line, no bullets. Keep it concrete but not verbose.]
 [Example: Create/modify files: `path/to/file`, `path/to/dir/`]
@@ -26,6 +29,12 @@ Implementation:
 Verification:
 [how you know it works — tests, command, manual check]
 [optional second verification line]
+
+Verification rationale:
+[Why this is the smallest relevant check for this task]
+
+Risk areas:
+[Files, behavior, integrations, permissions, data, migrations, or UX areas likely to break]
 
 Refs: [REQ-00X] | [Design: Section "Section name"]
 
@@ -45,11 +54,20 @@ Deps: [TASK-00X]
 Blocked by:
 [Decision, dependency, or prerequisite]
 
+Implementation constraints:
+[Keep changes surgical. Follow existing patterns. Do not refactor unrelated code.]
+
 Implementation:
 [One line per line]
 
 Verification:
 [One line per line]
+
+Verification rationale:
+[Why this is the smallest relevant check once unblocked]
+
+Risk areas:
+[Files, behavior, integrations, permissions, data, migrations, or UX areas likely to break]
 
 Refs: [REQ-00X] | [Design: Section "Section name"]
 
@@ -66,11 +84,20 @@ Parallel: [yes/no]
 Estimate: [S/M/L]
 Deps: [None | TASK-00X]
 
+Implementation constraints:
+[Constraints followed]
+
 Implementation:
 [One line per line]
 
 Verification:
 [One line per line]
+
+Verification rationale:
+[Why this verification was enough]
+
+Risk areas:
+[Areas reviewed or left as residual risk]
 
 Refs: [REQ-00X] | [Design: Section "Section name"]
 
@@ -92,5 +119,7 @@ Refs: [REQ-00X] | [Design: Section "Section name"]
 - One implementation item per line (no nested bullets).
 - Prefer referencing REQ-xxx for traceability; use design section refs if no REQ IDs exist.
 - Each task must have verification that is realistic for the repo.
+- Each task must explain why its verification is the smallest relevant check.
+- Each task must list risk areas for implementation and review focus.
 - Keep `Status`, `Deps`, and `Parallel` accurate.
 - Remove placeholders and this section when finalizing.

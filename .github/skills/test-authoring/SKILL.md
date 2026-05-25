@@ -19,6 +19,7 @@ Purpose: Write effective tests with minimal noise, aligned with the repo's conve
 - PROJECT.md (how to run tests, repo conventions)
 - Target TASK-xxx (preferred) or REQ-xxx
 - Existing test layout and patterns in the repo (must follow)
+- Relevant language conventions (for example `python-dev` when the repo is Python)
 
 ## Rules
 - Follow existing test patterns first (folders, naming, fixtures, mocks).
@@ -27,6 +28,8 @@ Purpose: Write effective tests with minimal noise, aligned with the repo's conve
 - If you need new helpers/fixtures, keep them local and minimal.
 - Do not introduce new test frameworks unless the repo already uses them.
 - For logic-heavy tasks, prefer starting from a failing test when practical.
+- Behavior changes should add or update tests unless there is a clear, documented reason not to.
+- Use the repo's existing framework first; use pytest only for Python repos that already use pytest or have no established test pattern.
 
 ## Process
 1) Identify the behavior to test (from TASK Verification and/or REQ acceptance criteria).
@@ -40,6 +43,7 @@ Purpose: Write effective tests with minimal noise, aligned with the repo's conve
    - One meaningful failure/edge case
    - A first failing test case when practical
 6) Update/confirm Verification command(s) for the task.
+7) Prefer the smallest relevant command that validates the behavior.
 
 ## Fallback defaults (only if repo has no pattern)
 - Python: pytest, tests/ layout, conftest.py for shared fixtures
@@ -49,5 +53,6 @@ Purpose: Write effective tests with minimal noise, aligned with the repo's conve
 ## Output
 - Files added/updated
 - What behaviors are covered (2-5 bullets)
+- Failure/edge case covered
 - Whether the test plan is TDD-friendly and what the first failing test should be
-- How to run (one command), consistent with PROJECT.md
+- Smallest relevant command to run, consistent with PROJECT.md

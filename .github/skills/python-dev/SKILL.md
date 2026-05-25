@@ -1,6 +1,6 @@
 ---
 name: python-dev
-description: Python development conventions (layout, packaging, logging, errors, and pytest strategy) used when the project is Python or when no repo pattern exists.
+description: Python development conventions (layout, packaging, logging, typing, and pytest strategy) used when the project is Python or when no repo pattern exists.
 argument-hint: "[what to do] [layout|impl|tests|packaging]"
 user-invocable: true
 license: MIT
@@ -27,11 +27,13 @@ If the repo is small and already flat, do not force a migration.
 - Do not invent build tooling; follow what the repo already uses.
 
 ## Implementation conventions (default)
-- Keep modules small and focused (avoid “god files”).
+- Keep modules small and focused, but avoid spreading one business rule across many shallow modules.
 - Prefer dataclasses for simple data containers.
-- Prefer explicit types on public functions; keep typing pragmatic (no mypy by default).
+- Prefer explicit types on public functions and boundaries when they improve clarity; keep typing pragmatic (no mypy by default).
+- Do not over-type obvious local variables or add noisy annotations that obscure intent.
 - Handle errors at the boundary (CLI/API handler), not deep inside helpers.
-- Avoid prints; use logging.
+- Prefer logging over print for runtime diagnostics.
+- Keep changes surgical and avoid unrelated refactors.
 
 ## Logging (default)
 - Use a module-level logger: logger = logging.getLogger(__name__)
@@ -66,6 +68,8 @@ Use:
 
 ## Execution modes (best practice)
 Fast (default during dev):
+- pytest tests/path/test_file.py::test_case
+- pytest tests/path/test_file.py
 - pytest tests/unit
 
 Full (pre-merge / explicit):
@@ -77,6 +81,7 @@ Integration tests MUST be skipped unless RUN_INTEGRATION=1 is set.
 - Mock all external boundaries (network/fs/time/env/subprocess/external APIs).
 - Prefer testing pure logic + edge cases.
 - Keep unit tests fast.
+- Add or update pytest tests for behavior changes.
 
 ## Integration test strategy (default)
 - Allowed to touch real services only in controlled envs (dev/stage) and only with RUN_INTEGRATION=1.
@@ -95,4 +100,6 @@ Integration tests MUST be skipped unless RUN_INTEGRATION=1 is set.
 ## Output
 - Proposed Python layout/conventions to follow (only if needed)
 - How to run fast/full tests
+- Smallest relevant pytest command
+- Risk areas and any tests not run, with why
 - Required env vars (if any)
