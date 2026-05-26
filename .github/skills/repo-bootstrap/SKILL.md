@@ -42,7 +42,12 @@ Purpose: Bootstrap repository context for agents by completing `PROJECT.md`, ali
    - tell the agent to stop and ask if repository context is incomplete
    - avoid duplicating policy across multiple instruction files
 6. Inspect repo entrypoints and capture the real commands and quality gates already present in the repo.
-7. Keep changes minimal. Do not modify `specs/*` as part of onboarding.
+7. Capture only concrete, reusable execution guidance in `PROJECT.md` when missing:
+   - supported test commands
+   - quality gates
+   - language-specific conventions already used by the repo
+   - commit/release constraints explicitly requested by the project
+8. Keep changes minimal. Do not modify `specs/*` as part of onboarding.
 
 ## Rules
 
@@ -56,6 +61,7 @@ Purpose: Bootstrap repository context for agents by completing `PROJECT.md`, ali
 - Updated `PROJECT.md` (only if placeholders were filled)
 - Updated instruction file(s) only where alignment was missing
 - A short summary of the repo's real commands and quality gates if they were unclear before
+- Optional `PROJECT.md` additions for concrete commands/conventions only; do not add generic platitudes
 
 ## Final response
 

@@ -91,11 +91,15 @@ Use the `task-breakdown` skill to create and iterate on the tasks file for the c
 - Tasks use IDs (`TASK-001`) and must be small and actionable.
 - Prefer vertical slices by default.
 - Mark blocking dependencies and parallelizable tasks explicitly.
+- Treat tasks as verifiable goals: include realistic verification, verification rationale, implementation constraints, and risk areas.
 - Each task MUST include:
   - `Status`, `Deps`, and `Parallel`
+  - `Implementation constraints`
   - short description
   - implementation lines (one per line)
   - `Verification: ...`
+  - `Verification rationale`
+  - `Risk areas`
   - `Requirements: REQ-xxx` or `Design: Section "..."`
 
 Gate: get explicit approval before proceeding to implementation.

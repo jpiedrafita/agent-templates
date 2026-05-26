@@ -36,13 +36,22 @@ Purpose: Keep quality high with a short, consistent checklist and repo-aligned v
 3) Maintainability
 - Naming, structure, single-responsibility
 - Avoid unnecessary complexity
+- Changes are surgical and avoid unrelated refactors
+- Existing architecture/style is followed unless divergence is explicitly justified
 
 4) Tests
 - New behavior covered by tests (or clear reason why not)
 - Verification command exists and is documented
+- The smallest relevant verification was run or proposed
 
 5) Performance (only if relevant)
 - Obvious hot paths, N+1 style issues, excessive I/O
+
+6) Implementation discipline
+- Tasks map to verifiable goals
+- Changed files and risk areas are summarized
+- No commits are made unless explicitly requested
+- Python-specific checks (when applicable): logging over print, pytest for behavior changes, typing where it improves clarity
 
 ## Suggested checks (only if repo defines them)
 
@@ -54,5 +63,7 @@ Purpose: Keep quality high with a short, consistent checklist and repo-aligned v
 - Critical issues (must fix)
 - Major issues
 - Minor/nits
+- Implementation discipline issues
+- Risk areas
 - Suggested checks (commands, if available)
 - Summary (3 bullets)

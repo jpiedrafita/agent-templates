@@ -27,16 +27,22 @@ Purpose: Turn an approved design into a task list that is easy to implement and 
 
 - Tasks MUST be implementable in small, reviewable diffs.
 - One task = one clear objective.
+- Each task MUST be a verifiable goal, not just a work description.
 - Prefer tasks that can be completed in one agent iteration.
 - Prefer vertical slices by default: a thin end-to-end capability across the relevant layers.
 - Use layer-based or infrastructure-first tasks only when a vertical slice is truly blocked without them.
 - Make dependencies explicit only when they truly block.
 - Mark tasks that can run in parallel.
 - Do not invent repo commands. If PROJECT.md is unclear, ask.
+- Keep task scope surgical: avoid unrelated refactors and speculative cleanup.
+- Prefer the smallest relevant verification command/check. Do not default to broad `run all tests` unless the task truly requires it or the repo has no narrower entrypoint.
 - Every task MUST include:
   - `Status`
+  - Implementation constraints
   - Implementation: lines (one per line)
   - Verification: lines (one per line)
+  - Verification rationale
+  - Risk areas
   - Refs: pointing to REQ-xxx and/or Design: Section "..."
   - Deps and Estimate
 
@@ -51,6 +57,9 @@ Parallel: yes
 Estimate: S
 Deps: None
 
+Implementation constraints:
+Keep changes surgical. Follow existing patterns. Do not refactor unrelated code.
+
 Implementation:
 <one line>
 <one line>
@@ -58,6 +67,12 @@ Implementation:
 Verification:
 <one line command or check>
 <one line command or check>
+
+Verification rationale:
+<why this is the smallest relevant check for the changed behavior>
+
+Risk areas:
+<files, behavior, integrations, permissions, data, migrations, or UX areas likely to break>
 
 Refs: REQ-001 | Design: Section "<name>"
 ```
@@ -69,8 +84,11 @@ Refs: REQ-001 | Design: Section "<name>"
 3) Split by vertical slices when possible (feature end-to-end), otherwise by the smallest blocking prerequisite.
 4) Add explicit dependencies only when they truly block another task.
 5) Mark `Parallel: yes` for tasks that can safely proceed without waiting on another task.
-6) Ensure each task has a minimal, realistic `Verification:` section that the repo supports.
-7) Prefer `Ready`, `Blocked`, and `Done` groupings or equivalent status fields over a flat unstructured list.
+6) Add implementation constraints that keep the task surgical and aligned with existing patterns.
+7) Ensure each task has a minimal, realistic `Verification:` section that the repo supports.
+8) Add Verification rationale explaining why the chosen check is sufficient.
+9) Add Risk areas so the implementer and reviewer know where to focus.
+10) Prefer `Ready`, `Blocked`, and `Done` groupings or equivalent status fields over a flat unstructured list.
 
 ## Verification guidance
 
